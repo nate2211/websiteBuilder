@@ -67,3 +67,12 @@ export function ImageSelectComponent({ account, sx,variant= "rounded", type, id 
         </Box>
     );
 }
+export function ImageComponent({image, sx,variant= "rounded"}) {
+
+
+    return (
+        <Box sx={sx}>
+            <Avatar src={"http://127.0.0.1:8000/" + image} variant={variant} sx={{  width: "100%", height: "100%" }}/>
+        </Box>
+    );
+}

@@ -1,4 +1,4 @@
-import useAccountID from "../hooks/useAccountID";
+import useAccountID from "../../hooks/useAccountID";
 import {useParams} from "react-router-dom";
 import {
     Avatar, Box,
@@ -11,7 +11,7 @@ import {
     Modal,
     Typography
 } from "@mui/material";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import {useEffect, useState} from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';

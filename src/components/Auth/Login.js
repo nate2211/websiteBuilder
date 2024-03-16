@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { TextField, Button, CircularProgress, Alert, Container, Typography } from '@mui/material';
-import {useAuth} from "../hooks/useAuth";
+import {useAuth} from "../../hooks/useAuth";
 import {useSelector} from "react-redux";
 
 const Login = ({ onLoginSuccess }) => {

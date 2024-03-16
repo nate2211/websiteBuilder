@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, CircularProgress, Alert } from '@mui/material';
 import {useNavigate} from "react-router-dom";
-import {useAuth} from "../hooks/useAuth";
+import {useAuth} from "../../hooks/useAuth";
 
 function Signup() {
     const [formData, setFormData] = useState({

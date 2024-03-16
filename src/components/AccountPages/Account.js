@@ -1,11 +1,11 @@
 import {Alert, Box, Button, CircularProgress, Container, TextField, Typography} from "@mui/material";
-import useAccountID from "../hooks/useAccountID";
+import useAccountID from "../../hooks/useAccountID";
 import {useSelector} from "react-redux";
-import { useAccountImages } from '../hooks/useAccountImages';
+import { useAccountImages } from '../../hooks/useAccountImages';
 import {useEffect, useState} from "react"; // Adjust the import path as needed
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteAccountImage } from '../slices/accountimages';
+import { deleteAccountImage } from '../../slices/accountimages';
 import axios from "axios";
 
 const ImageItem = ({ image }) => {

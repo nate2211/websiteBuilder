@@ -1,8 +1,8 @@
-import useAccountID from "../hooks/useAccountID";
+import useAccountID from "../../hooks/useAccountID";
 import {useParams} from "react-router-dom";
 import {CircularProgress, Container,List, ListItem, Typography} from "@mui/material";
-import Navbar from "./Navbar";
-import MusicPlayer from "./MusicPlayer";
+import Navbar from "../Navbar";
+import MusicPlayer from "../MusicPlayer";
 
 
 export default function GetShop(){

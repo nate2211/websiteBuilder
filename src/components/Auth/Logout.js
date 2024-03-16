@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import { useAuth } from "../hooks/useAuth"; // Adjust the path as necessary
-import { persistor } from '../store'; // Adjust the path to your store configuration
+import { useAuth } from "../../hooks/useAuth"; // Adjust the path as necessary
+import { persistor } from '../../store'; // Adjust the path to your store configuration
 
 export default function Logout(){
     const { logoutUser } = useAuth();

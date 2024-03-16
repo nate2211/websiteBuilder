@@ -10,12 +10,13 @@ import {
     CircularProgress, Box, List, ListItem, ListItemAvatar, Avatar, Link
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import useAccountID from "../hooks/useAccountID";
+import useAccountID from "../../hooks/useAccountID";
 import {useParams} from "react-router-dom";
 import {motion} from "framer-motion";
-import {ImageSelectComponent} from "../elements/image";
-import {ComponentSelectBody, ComponentSelectFooter, ComponentSelectHeader} from "../elements/component";
+import {ImageSelectComponent} from "../../elements/image";
+import {ComponentSelectBody, ComponentSelectFooter, ComponentSelectHeader} from "../../elements/component";
 import {useSelector} from "react-redux";
+import axios from "axios";
 const useStyles = makeStyles((theme) => ({
     formControl: {
         minWidth: 200,
@@ -87,6 +88,13 @@ const ComponentBuilder = () => {
     const [layout, setLayout] = useState('');
     let { id } = useParams();
     const { account, loading, error } = useAccountID(id);
+    const user = useSelector((state) => state.auth.user);
+    const components = useSelector((state) => state.builder.components)
+    const images = useSelector((state) => state.builder.images)
+    const texts = useSelector((state) => state.builder.texts)
+    const settings = useSelector((state) => state.builder.settings)
+
+
     const handleStyleChange = (event) => {
 
         setStyle(event.target.value);
@@ -96,10 +104,17 @@ const ComponentBuilder = () => {
         setLayout(event.target.value);
     };
 
-    const buildComponent = () => {
+    const buildComponent = (e) => {
         // Implement logic to build component based on selected style and layout
+        e.preventDefault()
         console.log("Selected Style:", style);
         console.log("Selected Layout:", layout);
+
+        axios.post("http://127.0.0.1:8000/api/create-layout/", {"source": {title: "test", type: layout, style: style}, "header": {component: components.header, images: images.header, texts: texts.header, settings: settings.header},
+            "body": {component: components.body, images: images.body, texts: texts.body, settings: settings.body}, "footer": {component: components.footer, images: images.footer, texts: texts.footer, settings: settings.footer},
+        }, {headers: {
+                Authorization: `Bearer ${user.access}`,
+            },}).then((r) => console.log(r))
     };
 
     if (error){
@@ -134,7 +149,7 @@ const ComponentBuilder = () => {
                     <MenuItem value="layout3">Layout 3</MenuItem>
                 </Select>
             </FormControl>
-            <Button variant="contained" color="primary" className={classes.button} onClick={buildComponent}>
+            <Button variant="contained" color="primary" className={classes.button} onClick={(e) => buildComponent(e)}>
                 Build Component
             </Button>
             {layout === "layout1" && <Layout1 account={account} style={styleSelect[style]}/>}
